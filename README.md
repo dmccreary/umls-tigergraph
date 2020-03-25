@@ -7,7 +7,7 @@ Your local system must also have [gradle installed](https://gradle.org/install/)
 
 Once you have gradle installed (test by typing $ gradle version) you can type:
 
-```gradle tasks```
+```$ gradle tasks```
 
 See [Giraffle](https://optum.github.io/giraffle/#/) documentation for further details.
 
