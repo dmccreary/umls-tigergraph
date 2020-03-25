@@ -1,0 +1,5 @@
+USE GRAPH @graphname@
+
+SET sys.data_root = "@sys_dataroot@"
+
+RUN LOADING JOB load_ranks

@@ -1,0 +1,9 @@
+USE GRAPH @graphname@
+
+DROP JOB load_conceptLabels
+
+CREATE LOADING JOB load_conceptLabels FOR GRAPH @graphname@ {
+    LOAD "/tg/dropzone/ConceptLabels.json"
+        TO VERTEX Concept VALUES ($"Concept", $"Concept",$"label")
+    USING JSON_FILE="true";
+}

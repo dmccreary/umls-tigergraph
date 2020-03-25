@@ -1,0 +1,10 @@
+CREATE VERTEX Ranking (PRIMARY_ID rank_id STRING, rank INT)
+
+CREATE DIRECTED EDGE HAS_RANK (FROM Atom, TO Ranking) WITH REVERSE_EDGE="RANKS_ATOM"
+
+CREATE GLOBAL SCHEMA_CHANGE JOB add_umls_ranks {
+    ADD VERTEX Ranking TO GRAPH @graphname@;
+    ADD EDGE HAS_RANK, RANKS_ATOM TO GRAPH @graphname@;
+}
+
+RUN JOB add_umls_ranks

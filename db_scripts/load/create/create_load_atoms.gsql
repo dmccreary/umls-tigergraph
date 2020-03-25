@@ -1,0 +1,31 @@
+USE GRAPH @graphname@
+
+DROP JOB load_atom
+
+SET sys.data_root = "/tg/dropzone/2019AA/META/MRCONSOFolder/"
+
+
+CREATE LOADING JOB load_atom FOR GRAPH umls {
+    #DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRCONSOFolder/xaa";
+
+    DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRCONSO.RRF";
+
+    DEFINE HEADER h = "concept_id", "language_code", "term_status", "term_id", "string_type_code", "string_id", "atom_id_preferred_indicator", "atom_id", "source_asserted_atom_id", "source_asserted_concept_id", "source_asserted_descriptor_id", "source_abbreviation_text", "term_type_code", "code", "string_text", "source_restruction_level", "supress_indicator", "current_view_indicator";
+    LOAD f
+        TO VERTEX Atom VALUES (
+            $"atom_id", $"language_code", $"term_status",
+            $"term_id", $"string_type_code", $"string_id",
+            $"atom_id_preferred_indicator", $"atom_id",
+            $"source_asserted_atom_id", $"source_asserted_concept_id",
+            $"source_asserted_descriptor_id", $"source_abbreviation_text",
+            $"term_type_code", $"code", $"string_text",
+            $"source_restruction_level", $"supress_indicator",
+            $"current_view_indicator"),
+        TO VERTEX SUI VALUES($"string_id", $"string_text"),
+        TO VERTEX SUI_Idx VALUES($"string_text", $"string_text", _),
+        TO EDGE HAS_CONCEPT VALUES ($"atom_id", $"concept_id"),
+        TO EDGE STRING_IN VALUES ($"string_id",$"atom_id"),
+        TO EDGE STRING_INDEXES VALUES ($"string_text", $"string_id")
+        WHERE $"language_code" == "ENG"
+        USING USER_DEFINED_HEADER="h", separator="|";
+}

@@ -1,0 +1,6 @@
+use graph @graphname@
+
+SET sys.data_root = "/tg/dropzone/2019AA/META/"
+
+run loading job load_rel
+

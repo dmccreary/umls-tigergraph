@@ -1,0 +1,13 @@
+#TODO: Create new secure group
+USE GRAPH @graphname@
+
+CREATE  GROUP  umls_admin        PROXY  "memberOf=CN=atc_hc_graph_admin,CN=Users,DC=ms,DC=ds,DC=uhc,DC=com"
+CREATE  GROUP  umls_designer     PROXY  "memberOf=CN=atc_hc_graph_designer,CN=Users,DC=ms,DC=ds,DC=uhc,DC=com"
+CREATE  GROUP  umls_queryreader  PROXY  "memberOf=CN=atc_hc_graph_queryreader,CN=Users,DC=ms,DC=ds,DC=uhc,DC=com"
+CREATE  GROUP  umls_querywriter  PROXY  "memberOf=CN=atc_hc_graph_querywriter,CN=Users,DC=ms,DC=ds,DC=uhc,DC=com"
+
+GRANT  ROLE  admin        to  umls_admin
+GRANT  ROLE  designer     to  umls_designer
+GRANT  ROLE  queryreader  to  umls_queryreader
+GRANT  ROLE  querywriter  to  umls_querywriter
+

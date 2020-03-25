@@ -1,0 +1,26 @@
+CREATE DIRECTED EDGE AQ ( FROM Atom, TO Atom, rela STRING ) WITH REVERSE_EDGE="QB" #Allowed Qualifier, Qualified By
+CREATE DIRECTED EDGE CHD ( FROM Atom, TO Atom, rela STRING ) WITH REVERSE_EDGE="PAR" #Child, Parent
+CREATE DIRECTED EDGE RB ( FROM Atom, TO Atom, rela STRING ) WITH REVERSE_EDGE="RN" #Child, Parent
+CREATE UNDIRECTED EDGE RL ( FROM Atom, TO Atom, rela STRING ) #Related
+CREATE UNDIRECTED EDGE RO ( FROM Atom, TO Atom, rela STRING ) #Other relationship
+CREATE UNDIRECTED EDGE RQ ( FROM Atom, TO Atom, rela STRING ) #Related _possibly_ synonymous
+CREATE UNDIRECTED EDGE RU ( FROM Atom, TO Atom, rela STRING ) #Related, unspecified
+CREATE UNDIRECTED EDGE SIB ( FROM Atom, TO Atom, rela STRING ) #Sibling
+
+CREATE DIRECTED EDGE AQ_CONCEPT ( FROM Concept, TO Concept, rela STRING ) WITH REVERSE_EDGE="QB_CONCEPT" #Allowed Qualifier, Qualified By
+CREATE DIRECTED EDGE CHD_CONCEPT ( FROM Concept, TO Concept, rela STRING ) WITH REVERSE_EDGE="PAR_CONCEPT" #Child, Parent
+CREATE DIRECTED EDGE RB_CONCEPT ( FROM Concept, TO Concept, rela STRING ) WITH REVERSE_EDGE="RN_CONCEPT" #Has Broader, Has Narrower
+
+CREATE UNDIRECTED EDGE RL_CONCEPT ( FROM Concept, TO Concept, rela STRING ) #Related Relationship
+CREATE UNDIRECTED EDGE RO_CONCEPT ( FROM Concept, TO Concept, rela STRING ) #Other relationship
+CREATE UNDIRECTED EDGE RQ_CONCEPT ( FROM Concept, TO Concept, rela STRING ) #Related _possibly_ synonymous
+CREATE UNDIRECTED EDGE RU_CONCEPT ( FROM Concept, TO Concept, rela STRING ) #Related, unspecified
+CREATE UNDIRECTED EDGE SIB_CONCEPT ( FROM Concept, TO Concept, rela STRING ) #Sibling
+
+CREATE GLOBAL SCHEMA_CHANGE JOB add_umls_edges {
+    ADD EDGE AQ, QB, CHD, PAR, RB, RN, RO, RQ, RU, SIB, RB_CONCEPT, RN_CONCEPT, AQ_CONCEPT, QB_CONCEPT,
+        CHD_CONCEPT, PAR_CONCEPT,RL_CONCEPT, RO_CONCEPT, RQ_CONCEPT, RU_CONCEPT, SIB_CONCEPT TO GRAPH @graphname@;
+    ALTER EDGE RB ADD ATTRIBUTE (rela STRING);
+}
+
+RUN JOB add_umls_edges

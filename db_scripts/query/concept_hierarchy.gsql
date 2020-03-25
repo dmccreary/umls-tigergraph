@@ -1,0 +1,19 @@
+USE GRAPH @graphname@
+CREATE OR REPLACE QUERY conceptHierarchy(STRING term) FOR GRAPH @graphname@ {
+    ListAccum<VERTEX<Concept>> @parentConcept;
+    ListAccum<VERTEX<SemanticType>> @parentSemanticType;
+
+    String pattern;
+    pattern += "%" + term + "%";
+
+    atoms = Atom.*;
+    S1 = SELECT a FROM atoms:a WHERE a.language_code == "ENG" AND a.string_text LIKE pattern;
+    S2 = SELECT c FROM S1:a-(HAS_CONCEPT:e)->Concept:c
+        ACCUM a.@parentConcept += c;
+    S3 = SELECT st FROM S2:c-(HAS_SEMANTICTYPE:e)->SemanticType:st
+        ACCUM c.@parentSemanticType += st;
+    PRINT S1 as atoms;
+    PRINT S2 as concepts;
+    PRINT S3 as semanticTypes;
+}
+INSTALL QUERY conceptHierarchy

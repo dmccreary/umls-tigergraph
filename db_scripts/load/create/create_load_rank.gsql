@@ -1,0 +1,18 @@
+USE GRAPH @graphname@
+
+DROP JOB load_ranks
+
+SET sys.data_root = "@sys_dataroot@"
+
+CREATE LOADING JOB load_ranks FOR GRAPH umls {
+
+    #DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRRANK.RRF";
+
+    DEFINE HEADER h = "rank", "source_name", "term_type", "supress_indicator";
+
+    LOAD "/tg/dropzone/2019AA/META/MRRANK.RRF"
+        TO VERTEX Ranking VALUES (
+            gsql_concat($"source_name",$"term_type"),
+            $"rank")
+        USING USER_DEFINED_HEADER="h", separator="|";
+}

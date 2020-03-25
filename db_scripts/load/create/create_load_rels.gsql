@@ -1,0 +1,52 @@
+USE GRAPH @graphname@
+
+DROP JOB load_rel
+
+SET sys.data_root = "/tg/dropzone/2019AA/META/"
+
+CREATE LOADING JOB load_rel FOR GRAPH @graphname@ {
+    DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRREL.RRF";
+
+
+    DEFINE HEADER h =
+        "concept_1_id", "atom_first_id", "relationship_type_1_column_name",
+        "relationship_label", "concept_2_id", "atom_second_id", "relationship_type_2_column_name",
+        "relationship_additional_label", "relationship_id", "source_attribute_relationships_id",
+        "source_abbreviation_text", "relationship_label_source_code", "relationship_group",
+        "source_direction_indicator", "supress_indicator", "current_view_indicator";
+
+    LOAD f
+        TO EDGE RL VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RL" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE RN VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RN" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE AQ VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "AQ" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE RO VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RO" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE RQ VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RQ" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE RU VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RU" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE PAR VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "PAR" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE SIB VALUES ($"atom_first_id", $"atom_second_id", $"relationship_additional_label")
+        WHERE  $"relationship_label" == "SIB" AND NOT $"atom_first_id" IS EMPTY AND NOT $"atom_second_id" IS EMPTY,
+        TO EDGE AQ_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "AQ",
+        TO EDGE RN_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RN",
+        TO EDGE RO_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RO",
+        TO EDGE RQ_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RQ",
+        TO EDGE RL_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE  $"relationship_label" == "RL",
+        TO EDGE RU_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "RU",
+        TO EDGE PAR_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE $"relationship_label" == "PAR",
+        TO EDGE SIB_CONCEPT VALUES ($"concept_1_id", $"concept_2_id", $"relationship_additional_label")
+        WHERE  $"relationship_label" == "SIB"
+        USING USER_DEFINED_HEADER="h", separator="|";
+}

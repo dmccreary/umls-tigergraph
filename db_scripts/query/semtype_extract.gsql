@@ -1,0 +1,7 @@
+USE GRAPH @graphname@
+CREATE OR REPLACE QUERY semTypeExtract(VERTEX<SemanticType> stui) FOR GRAPH @graphname@ {
+    st = {stui};
+    S = SELECT c FROM st-(HAS_SEMANTICTYPE_REVERSE:e)->Concept:c;
+    PRINT S AS concepts;
+}
+INSTALL QUERY semTypeExtract

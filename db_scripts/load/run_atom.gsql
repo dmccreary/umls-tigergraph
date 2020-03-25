@@ -1,0 +1,6 @@
+use graph @graphname@
+
+SET sys.data_root = "@sys_dataroot@"
+
+run loading job load_atom
+

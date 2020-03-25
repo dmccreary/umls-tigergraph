@@ -1,0 +1,22 @@
+USE GRAPH @graphname@
+CREATE OR REPLACE QUERY cuiQuery(VERTEX<Concept> cui) FOR GRAPH @graphname@ {
+    SetAccum<VERTEX> @RB;
+    SetAccum<VERTEX> @RN;
+
+    C = {cui};
+    semType = SemanticType.*;
+    S = SELECT st FROM C-(HAS_SEMANTICTYPE)->SemanticType:st;
+    A = SELECT a FROM C-(HAS_ATOM)->Atom:a;
+    RBC = SELECT other FROM C-(RB_CONCEPT)->Concept:other
+        ACCUM C.@RB += other,
+            other.@RN += C;
+    RNC = SELECT other FROM C-(RN_CONCEPT)->Concept:other
+        ACCUM C.@RN += other,
+            other.@RB += C;
+    concepts = C UNION RBC;
+    concepts = concepts UNION RNC;
+    PRINT S AS semantic_types;
+    PRINT concepts;
+    PRINT A AS atoms;
+}
+INSTALL QUERY cuiQuery
