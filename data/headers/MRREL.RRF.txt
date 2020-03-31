@@ -1,0 +1,1 @@
+concept-1-id|atom-first-id|relationship-type-1-column-name|relationship-label|concept-2-id|atom-second-id|relationship-type-2-column-name|relationship-additional-label|relationship-id|source-attribute-relationships-id|source-abbreviation-text|relationship-label-source-code|relationship-group|source-direction-indicator|supress-indicator|current-view-indicator|

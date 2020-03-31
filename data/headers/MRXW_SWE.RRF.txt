@@ -1,0 +1,1 @@
+language-code|word-lower-case-text|concept-id|term-id|string-id|

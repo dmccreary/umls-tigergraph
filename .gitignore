@@ -1,2 +1,6 @@
 .DS_Store
+.gradle
 build.gradle.kts.original
+gradle-local.properties
+gradle-dev.properties
+dragle-prod.properties

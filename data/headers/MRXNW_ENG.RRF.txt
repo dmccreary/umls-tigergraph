@@ -1,0 +1,1 @@
+language-code|normalized-word-text|concept-id|term-id|string-id|

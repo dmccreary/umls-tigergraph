@@ -1,0 +1,1 @@
+concept-id|source-asserted-id|source-abbreviation-text|source-release-version-text|concept-change-type-code|concept-status-descrption-text|concept-new-value|change-reason-text|current-view-indicator|

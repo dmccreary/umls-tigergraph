@@ -9,6 +9,10 @@ Once you have gradle installed (test by typing $ gradle version) you can type:
 
 ```$ gradle tasks```
 
+This will list a set of task to load the schema and load all UMLS data.
+
 See [Giraffle](https://optum.github.io/giraffle/#/) documentation for further details.
+[Description of UMLS Tables](https://www.ncbi.nlm.nih.gov/books/NBK9685/#_ch03_sec3_3_)
+[Diagram of UMLS Tables](https://www.nlm.nih.gov/research/umls/images/meta_e_diagram.jpg)
 
 

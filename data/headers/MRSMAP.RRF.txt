@@ -1,0 +1,1 @@
+mapset-concept-id|mapset-source-abbreviation|map-id|map-source-id|from-expression|from-type-code|relationship-label|relationship-additional-label|expression-map-to|term-status-code|current-view-indicator|

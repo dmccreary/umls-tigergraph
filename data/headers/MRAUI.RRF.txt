@@ -1,0 +1,1 @@
+atom-first-id|concept-1-id|last-release-cui1-valid-version-code|relationship-label|relationship-additional-label|map-reasons-code|atom-second-id|concept-2-id|map-current|

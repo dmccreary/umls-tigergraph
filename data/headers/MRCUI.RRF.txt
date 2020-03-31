@@ -1,0 +1,1 @@
+concept-1-id|last-release-cui1-valid-version-code|relationship-label|relationship-additional-label|map-reasons-code|concept-2-id|map-current|

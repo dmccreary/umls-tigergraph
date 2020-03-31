@@ -1,0 +1,1 @@
+concept-id|term-id|string-id|metathesaurus-id|attribute-attached-column-name|code|attribute-value-id|source-asserted-attribute-id|attribute-name|source-abbreviation-text|attribute-value|supress-indicator|current-view-indicator|

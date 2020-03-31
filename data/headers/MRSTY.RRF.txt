@@ -1,0 +1,1 @@
+concept-id|semantic-type-id|semantic-type-tree-number|semantic-type-code|attribute-value-id|current-view-indicator|

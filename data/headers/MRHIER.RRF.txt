@@ -1,0 +1,1 @@
+concept-id|atom-id|context-number|parent-atom-id|source-abbreviation-text|relationship-additional-label|path-to-root|source-context-number|current-view-indicator|

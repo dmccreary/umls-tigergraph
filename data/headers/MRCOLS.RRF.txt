@@ -1,0 +1,1 @@
+column-name|descriptive-name|documentation-section-number|minimum-string-length|average-character-length|max-string-length|file-name|sql-92-data-type-code|

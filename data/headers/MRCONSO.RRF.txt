@@ -1,0 +1,1 @@
+concept-id|language-code|term-status|term-id|string-type-code|string-id|atom-id-preferred-indicator|atom-id|source-asserted-atom-id|source-asserted-concept-id|source-asserted-descriptor-id|source-abbreviation-text|term-type-code|code|string-text|source-restruction-level|supress-indicator|current-view-indicator|

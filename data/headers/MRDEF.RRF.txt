@@ -1,0 +1,1 @@
+concept-id|atom-id|attribute-value-id|source-asserted-attribute-id|source-abbreviation-text|definition-text|supress-indicator|current-view-indicator|
