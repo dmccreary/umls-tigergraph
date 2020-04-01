@@ -8,17 +8,17 @@ plugins {
 repositories {
     jcenter()
 }
-val graphname: String ="UMLS"
-val gsqlGraphname: String ="UMLS"
+
 val gsqlGraphname: String by project
 val gsqlHost: String by project
 val gsqlUserName: String by project
 val gsqlPassword: String by project
 val gsqlAdminUserName: String by project
 val gsqlAdminPassword: String by project
-val tokenMap: LinkedHashMap<String, String> = linkedMapOf("graphname" to gsqlGraphname)
+val tokenMap: LinkedHashMap<String, String> =
+    linkedMapOf("graphname" to gsqlGraphname)
 
-val grpSchema: String = "UMLS Schema"
+val grpSchema: String = "Tigergraph Schema"
 
 tigergraph {
     scriptDir.set(file("db_scripts"))
