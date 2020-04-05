@@ -19,6 +19,7 @@ val tokenMap: LinkedHashMap<String, String> =
     linkedMapOf("graphname" to gsqlGraphname)
 
 val grpSchema: String = "Tigergraph Schema"
+val grpLoad: String = "Tigergraph Load"
 
 tigergraph {
     scriptDir.set(file("db_scripts"))
@@ -43,6 +44,48 @@ tasks {
         group = grpSchema
         description = "Drops the schema on the database"
         scriptPath = "dbscripts/schema/drop.gsql"
+        superUser = true
+    }
+
+    val loadSemanticGroups by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the Semantic Groups File: semantic-groups.txt"
+        scriptPath = "dbscripts/load/semantic-groups.gsql"
+        superUser = true
+    }
+
+    val loadSemanticTypes by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the Semantic Types File: RMSTY.RRF"
+        scriptPath = "dbscripts/load/semantic-types.gsql"
+        superUser = true
+    }
+
+    val loadConcepts by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the main Concepts file: MRCONS.RRF"
+        scriptPath = "dbscripts/load/concepts.gsql"
+        superUser = true
+    }
+
+    val loadRelationships by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the main Relationships file: MRREL.RRF"
+        scriptPath = "dbscripts/load/relationships.gsql"
+        superUser = true
+    }
+
+    val loadDefinitions by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the defintions file: MRDEF.RRF"
+        scriptPath = "dbscripts/load/definitions.gsql"
+        superUser = true
+    }
+
+    val loadSourceMetadata by registering(GsqlTask::class) {
+        group = grpLoad
+        description = "Loads the source metadata file: MRSAB.RRF"
+        scriptPath = "dbscripts/load/source-metadata.gsql"
         superUser = true
     }
 }
