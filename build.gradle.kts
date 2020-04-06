@@ -9,6 +9,11 @@ repositories {
     jcenter()
 }
 
+dependencies {
+    // gsqlRuntime("com.tigergraph.client:gsql_client:3.0")
+    gsqlRuntime(files("./lib/gsql_client.jar"))
+}
+
 val gsqlGraphname: String by project
 val gsqlHost: String by project
 val gsqlUserName: String by project
@@ -20,6 +25,8 @@ val tokenMap: LinkedHashMap<String, String> =
 
 val grpSchema: String = "Tigergraph Schema"
 val grpLoad: String = "Tigergraph Load"
+
+val gsqlClientVersion: String = "3.0"
 
 tigergraph {
     scriptDir.set(file("db_scripts"))
