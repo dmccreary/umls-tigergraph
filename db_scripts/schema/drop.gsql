@@ -12,7 +12,7 @@ RANKS_ATOM, RB, RB_CONCEPT, RN, RN_CONCEPT, RO, RO_CONCEPT, RQ, RQ_CONCEPT, RU,
 RU_CONCEPT, SIB, SIB_CONCEPT, STRING_IN, STRING_INDEXES, SY, SY_CONCEPT,
 USES_INDEX
 
-DROP VERTEX Atom, Concept, Ranking, SUI, SUI_Idx, SemanticType
+DROP VERTEX Atom, Concept, Ranking, SUI, SUI_Idx, SemanticType, SemanticGroup
 
 USE GLOBAL
 DROP JOB add_umls_edges, umls_add_string, add_umls_ranks

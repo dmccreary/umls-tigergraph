@@ -48,15 +48,15 @@ tasks {
 
     val createSchema by registering(GsqlTask::class) {
         group = grpSchema
-        description = "Create the schema on the database"
-        dependsOn("dropSchema")
+        description = "Create the schema in the UMLS database"
+        // dependsOn("dropSchema")
         scriptPath = "schema/schema.gsql"
         superUser = true
     }
 
     val dropSchema by registering(GsqlTask::class) {
         group = grpSchema
-        description = "Drops the schema on the database"
+        description = "Drops the schema in the UMLS database"
         scriptPath = "schema/drop.gsql"
         superUser = true
     }

@@ -6,3 +6,4 @@ gradle-dev.properties
 dragle-prod.properties
 umls-tigergraph.code-workspace
 build
+lib
