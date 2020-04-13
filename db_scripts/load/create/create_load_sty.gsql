@@ -1,10 +1,11 @@
-USE GRAPH @graphname@
+# should be USE GRAPH @graphname@
+USE GRAPH UMLS
 
 DROP JOB load_sty
 
-CREATE LOADING JOB load_sty FOR GRAPH umls {
-define FILENAME d = "/tg/dropzone/2019AA/META/SRDEF";
-define FILENAME f = "/tg/dropzone/2019AA/META/MRSTY.RRF";
+CREATE LOADING JOB load_sty FOR GRAPH @graphname@ {
+define FILENAME d = "/home/tigergraph/mydata/umls/MRDEF.RRF";
+define FILENAME f = "/home/tigergraph/mydata/umls/MRSTY.RRF";
 
 DEFINE HEADER h_d = "typ", "semantic_type_id", "label", "semantic_type_tree_number","description","skip1","skip2","skip3","short_label","skip4";
 DEFINE HEADER h_f = "concept_id", "semantic_type_id", "semantic_type_tree_number",

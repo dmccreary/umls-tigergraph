@@ -71,8 +71,10 @@ tasks {
     val loadSemanticTypes by registering(GsqlTask::class) {
         group = grpLoadData
         description = "Loads the Semantic Types File: RMSTY.RRF"
-        scriptPath = "load/semantic-types.gsql"
+        scriptPath = "load/create/create_load_sty.gsql"
         superUser = true
+        println("Running Task loadSemanticTypes")
+        println("creating load script for load/create/create_load_sty.gsql")
     }
 
     val loadConcepts by registering(GsqlTask::class) {
