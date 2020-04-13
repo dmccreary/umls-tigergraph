@@ -1,0 +1,30 @@
+# should be USE GRAPH @graphname@
+USE GRAPH  @graphname@
+
+DROP JOB load_semantic_type_group
+
+CREATE LOADING JOB load_semantic_types_group FOR GRAPH @graphname@ {
+
+define FILENAME f = "/home/tigergraph/mydata/umls/semantic-type-groups.txt";
+
+# this is the order in the semantic-type-group file
+DEFINE HEADER h_f = "semantic_type_group_abbreviation", "semantic_type_group_name", 
+"semantic_type_group_id", "semantic_type_group_description";
+
+# this is the mapping to the properties
+#CREATE VERTEX SemanticGroup (
+#    PRIMARY_ID semantic_group_id STRING,
+#    semantic_group_id STRING,
+#    name STRING, 
+#    abbreviation STRING, 
+#    description STRING)
+LOAD f
+    TO VERTEX SemanticGroup VALUES 
+      ($"semantic_type_group_id", 
+       $"semantic_type_group_id",
+       $"semantic_type_group_name",
+       $"semantic_type_group_abbreviation",
+       $"semantic_type_group_description"
+      )
+    USING USER_DEFINED_HEADER="h_f", separator="|";
+}

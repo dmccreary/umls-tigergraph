@@ -1,0 +1,5 @@
+USE GLOBAL
+CREATE GLOBAL SCHEMA_CHANGE JOB add_sem_group {
+    ADD VERTEX SemanticGroup TO GRAPH UMLS;
+}
+RUN JOB add_sem_group

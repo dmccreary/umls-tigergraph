@@ -22,7 +22,12 @@ CREATE VERTEX Atom (
 CREATE VERTEX Concept (PRIMARY_ID concept_id STRING,  concept_id STRING, label STRING)
 
 CREATE VERTEX SemanticType (PRIMARY_ID semantic_type_id STRING, semantic_type_id STRING, label STRING, description STRING)
-CREATE VERTEX SemanticGroup (PRIMARY_ID semantic_group_id STRING, semantic_group_id STRING, name STRING, abbreviation STRING, description STRING)
+CREATE VERTEX SemanticGroup (
+    PRIMARY_ID semantic_group_id STRING,
+    semantic_group_id STRING,
+    name STRING, 
+    abbreviation STRING, 
+    description STRING)
 
 CREATE DIRECTED EDGE HAS_SEMANTICTYPE (FROM Concept, TO SemanticType) WITH REVERSE_EDGE="SEMANTIC_TYPE_HAS_CONCEPT"
 CREATE DIRECTED EDGE HAS_CONCEPT ( FROM Atom, TO Concept ) WITH REVERSE_EDGE="HAS_ATOM"
@@ -30,7 +35,7 @@ CREATE DIRECTED EDGE HAS_CONCEPT ( FROM Atom, TO Concept ) WITH REVERSE_EDGE="HA
 CREATE UNDIRECTED EDGE RELATED ( FROM Atom, TO Atom, rela STRING ) // RELATED is a related Atom
 CREATE DIRECTED EDGE BROADER ( FROM Atom, TO Atom ) WITH REVERSE_EDGE="NARROWER" // Has Broader, Has Narrower
 
-CREATE GRAPH @graphname@ (Atom, Concept, SemanticType, HAS_CONCEPT, HAS_ATOM, HAS_SEMANTICTYPE, HAS_SEMANTICTYPE_REVERSE, RELATED)
+CREATE GRAPH @graphname@ (Atom, Concept, SemanticType, SemanticGroup, HAS_CONCEPT, HAS_ATOM, HAS_SEMANTICTYPE, HAS_SEMANTICTYPE_REVERSE, RELATED)
 
 
 #concept_1_id|atom_first_id|relationship_type_1_column_name|relationship_label|concept_2_id|atom_second_id|relationship_type_2_column_name|relationship_additional_label|relationship_id|source_attribute_relationships_id|source_abbreviation_text|relationship_label_source_code|relationship_group|source_direction_indicator|supress_indicator|current_view_indicator|

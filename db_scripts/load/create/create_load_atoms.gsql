@@ -5,8 +5,8 @@ DROP JOB load_atom
 SET sys.data_root = "/tg/dropzone/2019AA/META/MRCONSOFolder/"
 
 
-CREATE LOADING JOB load_atom FOR GRAPH umls {
-    #DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRCONSOFolder/xaa";
+CREATE LOADING JOB load_atom FOR GRAPH @graphname@ {
+    # DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRCONSOFolder/xaa";
 
     DEFINE FILENAME f = "/tg/dropzone/2019AA/META/MRCONSO.RRF";
 

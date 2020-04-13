@@ -64,7 +64,7 @@ tasks {
     val loadSemanticGroups by registering(GsqlTask::class) {
         group = grpLoadData
         description = "Loads the Semantic Groups File: semantic-groups.txt"
-        scriptPath = "load/semantic-groups.gsql"
+        scriptPath = "load/create/create_load_semantic_type_group.gsql"
         superUser = true
     }
 
@@ -114,6 +114,8 @@ tasks {
         println("scriptDir: " + scriptDir)
         println("gsqlClientVersion: " + gsqlClientVersion)
         println("inputDataDir: " + inputDataDir)
+        println("dataLoadDir: " + dataLoadDir)
+        println("defaultEnv: " + defaultEnv)
     }
 
     val lastTask by registering {
